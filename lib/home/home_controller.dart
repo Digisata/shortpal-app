@@ -64,7 +64,7 @@ class HomeController extends GetxController {
       (value) {
         if (value) {
           final Map<String, dynamic> body = {
-            'origin_url': inputOriginUrl,
+            'url': inputOriginUrl,
           };
 
           _apiService.shortUrl(body).then(

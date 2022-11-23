@@ -27,23 +27,23 @@ class UrlModel {
 class Url {
   Url({
     required this.id,
-    required this.originUrl,
+    required this.url,
     required this.shortUrl,
   });
 
   final int id;
-  final String originUrl;
+  final String url;
   final String shortUrl;
 
   factory Url.fromJson(Map<String, dynamic> json) => Url(
         id: json['id'] ?? -1,
-        originUrl: json['origin_url'] ?? '',
+        url: json['url'] ?? '',
         shortUrl: json['short_url'] ?? '',
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'origin_url': originUrl,
+        'url': url,
         'short_url': shortUrl,
       };
 }
