@@ -1,6 +1,8 @@
 import 'package:flare_flutter/flare_actor.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shortpal/color_data.dart';
 import 'package:shortpal/constant_data.dart';
@@ -105,19 +107,23 @@ class HomeRoute extends StatelessWidget {
                   ),
                 ),
                 Positioned.fill(
-                  child: SingleChildScrollView(
+                  child: Padding(
                     padding: EdgeInsets.only(
-                        left: Adaptive.w(5),
-                        right: Adaptive.w(5),
-                        top: Adaptive.w(10)),
+                      left: Adaptive.w(5),
+                      right: Adaptive.w(5),
+                      top: Adaptive.h(0.1),
+                    ),
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
                           height: 30.h,
                           padding: EdgeInsets.only(
-                              left: Adaptive.w(5), right: Adaptive.w(5)),
+                            left: Adaptive.w(5),
+                            right: Adaptive.w(5),
+                          ),
                           child: FlareActor(
                             "assets/Teddy.flr",
                             shouldClip: false,
@@ -138,6 +144,7 @@ class HomeRoute extends StatelessWidget {
                             child: Form(
                               key: homeController.formKey,
                               child: Column(
+                                mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
@@ -149,15 +156,14 @@ class HomeRoute extends StatelessWidget {
                                           padding: EdgeInsets.symmetric(
                                             vertical: Adaptive.h(1),
                                           ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  left: Adaptive.w(1),
-                                                ),
-                                                child: MouseRegion(
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                MouseRegion(
                                                   cursor:
                                                       SystemMouseCursors.click,
                                                   child: GestureDetector(
@@ -177,49 +183,53 @@ class HomeRoute extends StatelessWidget {
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              GetBuilder<HomeController>(
-                                                id: ConstantData.copyId,
-                                                builder: (homeController) =>
-                                                    PrimaryButton(
-                                                  width: Adaptive.w(10),
-                                                  onPressed: homeController
-                                                          .isCopyButtonClicked
-                                                      ? () {}
-                                                      : () {
-                                                          homeController
-                                                              .copyLink();
-                                                        },
-                                                  colors: homeController
-                                                          .isCopyButtonClicked
-                                                      ? const [
-                                                          Color.fromARGB(255,
-                                                              92, 160, 109),
-                                                          Color.fromARGB(
-                                                              255, 82, 135, 108)
-                                                        ]
-                                                      : const [
-                                                          Color.fromRGBO(160,
-                                                              92, 147, 1.0),
-                                                          Color.fromRGBO(
-                                                              115, 82, 135, 1.0)
-                                                        ],
-                                                  child: CustomTextWidget(
-                                                    text: homeController
+                                                SizedBox(
+                                                  width: Adaptive.w(2),
+                                                ),
+                                                GetBuilder<HomeController>(
+                                                  id: ConstantData.copyId,
+                                                  builder: (homeController) =>
+                                                      PrimaryButton(
+                                                    width: Adaptive.w(15),
+                                                    onPressed: homeController
                                                             .isCopyButtonClicked
-                                                        ? TextData.textCopied
-                                                        : TextData.textCopy,
-                                                    color: ColorData.white,
-                                                    fontSize: 16.0,
-                                                    fontFamily: 'RobotoMedium',
+                                                        ? () {}
+                                                        : () {
+                                                            homeController
+                                                                .copyLink();
+                                                          },
+                                                    colors: homeController
+                                                            .isCopyButtonClicked
+                                                        ? const [
+                                                            Color.fromARGB(255,
+                                                                92, 160, 109),
+                                                            Color.fromARGB(255,
+                                                                82, 135, 108)
+                                                          ]
+                                                        : const [
+                                                            Color.fromRGBO(160,
+                                                                92, 147, 1.0),
+                                                            Color.fromRGBO(115,
+                                                                82, 135, 1.0)
+                                                          ],
+                                                    child: CustomTextWidget(
+                                                      text: homeController
+                                                              .isCopyButtonClicked
+                                                          ? TextData.textCopied
+                                                          : TextData.textCopy,
+                                                      color: ColorData.white,
+                                                      fontSize: 16.0,
+                                                      fontFamily:
+                                                          'RobotoMedium',
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                  const SizedBox(
-                                    height: 8.0,
+                                  SizedBox(
+                                    height: 1.0.h,
                                   ),
                                   PrimaryButton(
                                     onPressed: homeController.isHomeLoading
@@ -259,6 +269,120 @@ class HomeRoute extends StatelessWidget {
                                   )
                                 ],
                               ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned.fill(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: Adaptive.w(5),
+                      right: Adaptive.w(5),
+                      bottom: Adaptive.h(2),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: RichText(
+                            overflow: TextOverflow.ellipsis,
+                            text: TextSpan(
+                              style: const TextStyle(
+                                fontStyle: FontStyle.normal,
+                                textBaseline: TextBaseline.alphabetic,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text:
+                                      '© ${DateFormat('y').format(DateTime.now())}',
+                                  style: const TextStyle(
+                                    color: Color.fromRGBO(115, 82, 135, 1.0),
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: ' Digisata',
+                                  style: const TextStyle(
+                                    color: Color.fromRGBO(115, 82, 135, 1.0),
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () async {
+                                      await _urlLauncherHelper.launchWebView(
+                                        'https://github.com/Digisata',
+                                      );
+                                    },
+                                ),
+                                const TextSpan(
+                                  text: ', contributors are',
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(115, 82, 135, 1.0),
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: ' welcome',
+                                  style: const TextStyle(
+                                    color: Color.fromRGBO(115, 82, 135, 1.0),
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () async {
+                                      await _urlLauncherHelper.launchWebView(
+                                        'https://github.com/Digisata/shortpal-app',
+                                      );
+                                    },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 0.5.h,
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: RichText(
+                            overflow: TextOverflow.ellipsis,
+                            text: TextSpan(
+                              style: const TextStyle(
+                                fontStyle: FontStyle.normal,
+                                textBaseline: TextBaseline.alphabetic,
+                              ),
+                              children: [
+                                const TextSpan(
+                                  text: 'Template by',
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(115, 82, 135, 1.0),
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: ' Mohitra',
+                                  style: const TextStyle(
+                                    color: Color.fromRGBO(115, 82, 135, 1.0),
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () async {
+                                      await _urlLauncherHelper.launchWebView(
+                                        'https://github.com/mohitra0/login_signup_screens',
+                                      );
+                                    },
+                                ),
+                              ],
                             ),
                           ),
                         ),
